@@ -353,9 +353,9 @@ footer{background:var(--sf);border-top:1px solid var(--br);padding:48px;text-ali
   <div class="hero-bigpole"><div class="hero-bigpole-inner"></div></div>
   <div class="hero-bigpole-left" style="width:40px;height:200px"><div class="hero-bigpole-inner"></div></div>
   <div class="hero-c">
-    <p class="hero-eyebrow">Direktori Resmi Barbershop</p>
+    <p class="hero-eyebrow">Direktori Resmi</p>
     <h1 class="hero-h">Sleman<br><em>Barbershop</em><br>Hub</h1>
-    <p class="hero-sub">Satu tempat, semua pilihan</p>
+    <p class="hero-sub">Satu Tempat, Banyak Pilihan</p>
     <p class="hero-desc">Temukan barbershop terbaik di Sleman, cek jadwal kosong, dan pesan tempat dengan pembayaran di muka — aman, mudah, dan tanpa antre.</p>
     <div class="hero-search">
       <input type="text" id="searchInput" placeholder="Cari nama barbershop atau lokasi...">
@@ -392,25 +392,25 @@ footer{background:var(--sf);border-top:1px solid var(--br);padding:48px;text-ali
 <section class="how-sec" id="cara-booking">
   <div class="how-in">
     <p class="sec-ey">Cara Booking</p>
-    <h2 class="sec-h">Mudah dalam <em>4 Langkah</em></h2>
+    <h2 class="sec-h">Mudah dalam 4 Langkah</h2>
     <div class="how-grid">
       <div class="how-step">
         <div class="how-ico">✂️</div>
         <div class="how-n">Langkah 01</div>
         <div class="how-t">Pilih Barbershop</div>
-        <div class="how-d">Jelajahi direktori, lihat profil lengkap, foto, dan ulasan dari pelanggan nyata.</div>
+        <div class="how-d">Jelajahi direktori, lihat profil lengkap, foto, dan ulasan dari pelanggan.</div>
       </div>
       <div class="how-step">
         <div class="how-ico">📅</div>
         <div class="how-n">Langkah 02</div>
         <div class="how-t">Pilih Waktu</div>
-        <div class="how-d">Cek slot tersedia secara real-time. Setiap sesi berdurasi 45 menit.</div>
+        <div class="how-d">Cek slot ketersediaan. Setiap sesi berdurasi 45 menit.</div>
       </div>
       <div class="how-step">
         <div class="how-ico">💳</div>
         <div class="how-n">Langkah 03</div>
-        <div class="how-t">Bayar di Muka</div>
-        <div class="how-d">Konfirmasi booking dengan transfer bank atau e-wallet. Slot Anda terjamin.</div>
+        <div class="how-t">Pembayaran</div>
+        <div class="how-d">Konfirmasi booking dengan transfer bank atau e-wallet. Pemesanan Anda terjamin.</div>
       </div>
       <div class="how-step">
         <div class="how-ico">💈</div>
@@ -425,14 +425,14 @@ footer{background:var(--sf);border-top:1px solid var(--br);padding:48px;text-ali
 <!-- FOOTER -->
 <footer>
   <div class="ft-logo">SLEMAN <em>BARBERSHOP</em> HUB</div>
-  <div class="ft-sub">Platform booking barbershop terpercaya di Kabupaten Sleman, DIY</div>
+  <div class="ft-sub">Platform Booking Barbershop Terpercaya Sleman</div>
   <div class="ft-links">
     <a href="#" class="ft-link">Tentang Kami</a>
     <a href="#" class="ft-link">Daftarkan Barbershop</a>
     <a href="#" class="ft-link">Syarat & Ketentuan</a>
     <a href="#" class="ft-link">Kontak</a>
   </div>
-  <div class="ft-copy">© 2025 Sleman Barbershop Hub. Melayani dengan bangga.</div>
+  <div class="ft-copy">© 2026 Sleman Barbershop Hub. Melayani dengan bangga.</div>
 </footer>
 
 <!-- DETAIL OVERLAY -->
@@ -479,11 +479,11 @@ const shops = [
     tags:["classic","premium"],
     bg:"linear-gradient(140deg,#1a0808 0%,#3a1010 60%,#1a0808 100%)",emoji:"💈",
     svcs:[
-      {n:"Potong Rambut Klasik",dur:"45 mnt",p:"Rp 65.000"},
-      {n:"Cukur + Potong",dur:"45 mnt",p:"Rp 85.000"},
-      {n:"Grooming Lengkap",dur:"45 mnt",p:"Rp 120.000"},
-      {n:"Trim Kumis & Jenggot",dur:"45 mnt",p:"Rp 35.000"},
-      {n:"Keramas + Blow Dry",dur:"45 mnt",p:"Rp 45.000"},
+      {n:"Potong Rambut Klasik",dur:"45 mnt",p:"Rp 30.000"},
+      {n:"Cukur + Potong",dur:"45 mnt",p:"Rp 30.000"},
+      {n:"Grooming Lengkap",dur:"45 mnt",p:"Rp 45.000"},
+      {n:"Trim Kumis & Jenggot",dur:"45 mnt",p:"Rp 25.000"},
+      {n:"Keramas + Blow Dry",dur:"45 mnt",p:"Rp 30.000"},
     ],
     booked:{}
   },
@@ -778,7 +778,7 @@ function renderStep(){
       <div class="conf-box">
         <div class="conf-ico">✅</div>
         <div class="conf-title">Booking Berhasil!</div>
-        <p class="conf-desc">Selesaikan pembayaran dalam <strong style="color:var(--gold2)">1 × 24 jam</strong> untuk mengamankan slot Anda. Kirim bukti transfer ke WhatsApp barbershop.</p>
+        <p class="conf-desc">Selesaikan pembayaran dalam <strong style="color:var(--gold2)">1 × 24 jam</strong> untuk mengamankan slot Anda. Kirim bukti bayar ke admin.</p>
       </div>
       <div class="code-box">
         <div class="code-box-h">Kode Booking</div>
@@ -797,7 +797,7 @@ function renderStep(){
         <div class="pay-instr-row"><span>${pi.label}</span><span>${pi.holder}</span></div>
         <div class="pay-acct">${pi.number}</div>
         <div class="pay-total">${fmtRp(total)}</div>
-        <div class="pay-note">Transfer tepat sesuai nominal di atas termasuk angka unik.<br>Kirim bukti transfer ke WhatsApp barbershop setelah pembayaran.</div>
+        <div class="pay-note">Transfer tepat sesuai nominal di atas termasuk angka unik.<br>Kirim bukti transfer ke whatsapp setelah pembayaran.</div>
       </div>
       <button class="btn-full" onclick="closeOv('bkOv')">Selesai</button>`;
   }
@@ -824,10 +824,9 @@ function payInfo(m){
     bri:{name:'BRI',label:'Atas Nama',holder:'Sleman Barbershop Hub',number:'0987-6543-2101'},
     mandiri:{name:'Mandiri',label:'Atas Nama',holder:'Sleman Barbershop Hub',number:'142-0098-765432'},
     bni:{name:'BNI',label:'Atas Nama',holder:'Sleman Barbershop Hub',number:'0987-6543-21'},
-    gopay:{name:'GoPay',label:'Dikirim ke',holder:'SB Hub',number:'0812-3456-7890'},
-    ovo:{name:'OVO',label:'Dikirim ke',holder:'SB Hub',number:'0812-3456-7890'},
-    dana:{name:'DANA',label:'Dikirim ke',holder:'SB Hub',number:'0812-3456-7890'},
-    spay:{name:'ShopeePay',label:'Dikirim ke',holder:'SB Hub',number:'0812-3456-7890'},
+    gopay:{name:'GoPay',label:'Dikirim ke',holder:'SB Hub',number:'0857-5368-3056'},
+    ovo:{name:'OVO',label:'Dikirim ke',holder:'SB Hub',number:'0857-5368-3056'},
+    dana:{name:'DANA',label:'Dikirim ke',holder:'SB Hub',number:'0857-5368-3056'},
   }[m]||{name:'BCA',label:'Atas Nama',holder:'Sleman Barbershop Hub',number:'1234-5678-90'};
 }
 
