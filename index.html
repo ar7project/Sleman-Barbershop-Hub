@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleman Barbershop Hub — Direktori & Booking</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#13100A;--sf:#1D1810;--sf2:#272015;--sf3:#332A1D;
+  --br:#3D3228;--br2:#4A3D2C;
+  --tx:#E4D0A0;--tx2:#9A845C;--tx3:#5A4E3A;
+  --gold:#BF8920;--gold2:#D9A030;--gold3:#F0BC50;
+  --teal:#1A6B58;--teal2:#228870;
+  --red:#8B2222;
+  --green:#1E6B42;
+  --r:10px;--r2:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;min-height:100vh}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--br);border-radius:4px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 48px;background:rgba(19,16,10,.93);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--br)}
+.nav-brand{display:flex;align-items:center;gap:14px}
+.pole-wrap{width:26px;height:36px;border-radius:13px;overflow:hidden;border:2px solid var(--br2);flex-shrink:0;position:relative}
+.pole-inner{width:300%;height:100%;background:repeating-linear-gradient(135deg,#b02020 0,#b02020 12px,#fff 12px,#fff 22px,#1a4a8a 22px,#1a4a8a 34px,#fff 34px,#fff 44px);animation:pole 2.2s linear infinite}
+@keyframes pole{0%{transform:translateY(0)}100%{transform:translateY(44px)}}
+.brand-text{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:2.5px;color:var(--tx)}
+.brand-text em{font-style:normal;color:var(--gold2)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-link{font-size:13px;color:var(--tx2);text-decoration:none;letter-spacing:.5px;transition:color .2s}
+.nav-link:hover{color:var(--tx)}
+.nav-btn{padding:9px 22px;background:var(--gold);color:var(--bg);border:none;border-radius:var(--r);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:13px;cursor:pointer;letter-spacing:.3px;transition:background .2s}
+.nav-btn:hover{background:var(--gold2)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:120px 48px 80px;position:relative;overflow:hidden;text-align:center}
+.hero-texture{position:absolute;inset:0;opacity:.04;
+  background-image:repeating-linear-gradient(0deg,var(--tx) 0,var(--tx) 1px,transparent 1px,transparent 40px),
+    repeating-linear-gradient(90deg,var(--tx) 0,var(--tx) 1px,transparent 1px,transparent 40px)}
+.hero-glow{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:400px;background:radial-gradient(ellipse,rgba(191,137,32,.12) 0%,transparent 70%);pointer-events:none}
+.hero-bigpole{position:absolute;right:6%;top:50%;transform:translateY(-50%);
+  width:70px;height:380px;border-radius:35px;overflow:hidden;border:2px solid var(--br);opacity:.35}
+.hero-bigpole-inner{width:300%;height:100%;background:repeating-linear-gradient(135deg,#9e2020 0,#9e2020 14px,rgba(255,255,255,.8) 14px,rgba(255,255,255,.8) 26px,#1a4080 26px,#1a4080 40px,rgba(255,255,255,.8) 40px,rgba(255,255,255,.8) 52px);animation:pole 3s linear infinite}
+.hero-bigpole-left{position:absolute;left:6%;top:50%;transform:translateY(-50%);
+  width:50px;height:260px;border-radius:25px;overflow:hidden;border:1px solid var(--br);opacity:.2}
+.hero-c{position:relative;z-index:1;max-width:760px}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:5px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:48px;height:1px;background:var(--gold);opacity:.5}
+.hero-h{font-family:'Libre Baskerville',serif;font-size:clamp(52px,9vw,100px);
+  line-height:.95;color:var(--tx);margin-bottom:12px;font-weight:700}
+.hero-h em{font-style:italic;color:var(--gold2)}
+.hero-sub{font-family:'Barlow Condensed',sans-serif;font-size:clamp(18px,3vw,28px);
+  letter-spacing:4px;color:var(--tx2);margin-bottom:28px}
+.hero-desc{font-size:16px;color:var(--tx2);max-width:500px;margin:0 auto 44px;font-weight:300;line-height:1.8}
+.hero-search{display:flex;gap:8px;max-width:480px;margin:0 auto 52px}
+.hero-search input{flex:1;padding:14px 20px;background:var(--sf);border:1px solid var(--br);
+  border-radius:var(--r);color:var(--tx);font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border .2s}
+.hero-search input:focus{border-color:var(--gold)}
+.hero-search input::placeholder{color:var(--tx3)}
+.hero-search button{padding:14px 24px;background:var(--gold);color:var(--bg);border:none;
+  border-radius:var(--r);font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap;transition:background .2s}
+.hero-search button:hover{background:var(--gold2)}
+.hero-stats{display:flex;justify-content:center;gap:56px}
+.stat-n{font-family:'Barlow Condensed',sans-serif;font-size:46px;font-weight:700;color:var(--gold2);line-height:1}
+.stat-l{font-size:11px;letter-spacing:2.5px;color:var(--tx3);text-transform:uppercase;margin-top:4px}
+.stat-div{width:1px;background:var(--br);align-self:stretch}
+
+/* SECTION */
+.sec{padding:80px 48px;max-width:1240px;margin:0 auto}
+.sec-ey{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:5px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.sec-h{font-family:'Libre Baskerville',serif;font-size:clamp(32px,4vw,48px);
+  color:var(--tx);margin-bottom:36px;line-height:1.1}
+.sec-h em{font-style:italic;color:var(--gold2)}
+
+/* FILTERS */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.fb{padding:7px 18px;background:transparent;border:1px solid var(--br);border-radius:100px;
+  color:var(--tx2);font-size:13px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s}
+.fb:hover{border-color:var(--tx2);color:var(--tx)}
+.fb.on{background:var(--gold);border-color:var(--gold);color:var(--bg);font-weight:600}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+
+/* CARD */
+.card{background:var(--sf);border:1px solid var(--br);border-radius:var(--r2);overflow:hidden;
+  cursor:pointer;transition:transform .22s,border-color .22s,box-shadow .22s}
+.card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 20px 48px rgba(0,0,0,.5)}
+.card-img{height:200px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:72px}
+.card-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50%;
+  background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.card-badge{position:absolute;top:12px;left:12px;padding:3px 10px;border-radius:4px;
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;z-index:1}
+.b-open{background:var(--teal);color:#b0ffd8}
+.b-closed{background:rgba(60,50,40,.8);color:var(--tx2)}
+.card-stars{position:absolute;bottom:12px;right:12px;background:rgba(13,10,6,.82);
+  padding:4px 10px;border-radius:20px;font-size:12px;color:var(--gold2);z-index:1;
+  display:flex;align-items:center;gap:4px}
+.card-body{padding:20px}
+.card-name{font-family:'Libre Baskerville',serif;font-size:22px;font-weight:700;
+  color:var(--tx);margin-bottom:4px}
+.card-addr{font-size:12px;color:var(--tx2);margin-bottom:12px;
+  display:flex;align-items:flex-start;gap:5px}
+.card-addr svg{flex-shrink:0;margin-top:2px}
+.card-tags{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tag{padding:2px 10px;background:var(--sf2);border:1px solid var(--br);border-radius:20px;
+  font-size:11px;color:var(--tx2);letter-spacing:.3px}
+.card-foot{display:flex;justify-content:space-between;align-items:center;
+  padding-top:14px;border-top:1px solid var(--br)}
+.card-hrs{font-size:12px;color:var(--tx2)}
+.card-price{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;color:var(--gold2);letter-spacing:.5px}
+.card-cta{margin-top:14px;width:100%;padding:11px;background:transparent;
+  border:1px solid var(--gold);border-radius:var(--r);color:var(--gold);
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:13px;
+  cursor:pointer;transition:all .2s;letter-spacing:.3px}
+.card-cta:hover{background:var(--gold);color:var(--bg)}
+.no-results{text-align:center;padding:60px 0;color:var(--tx2);font-size:15px;grid-column:1/-1}
+
+/* HOW IT WORKS */
+.how-sec{background:var(--sf);border-top:1px solid var(--br);border-bottom:1px solid var(--br);padding:80px 48px}
+.how-in{max-width:1100px;margin:0 auto}
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;margin-top:52px}
+.how-step{text-align:center}
+.how-ico{width:66px;height:66px;border-radius:50%;background:var(--sf2);border:1.5px solid var(--gold);
+  margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-size:28px}
+.how-n{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;
+  color:var(--gold);margin-bottom:6px;text-transform:uppercase}
+.how-t{font-family:'Libre Baskerville',serif;font-size:18px;color:var(--tx);margin-bottom:8px}
+.how-d{font-size:13px;color:var(--tx2);line-height:1.7;font-weight:300}
+
+/* FOOTER */
+footer{background:var(--sf);border-top:1px solid var(--br);padding:48px;text-align:center}
+.ft-logo{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;
+  letter-spacing:3px;color:var(--tx);margin-bottom:8px}
+.ft-logo em{font-style:normal;color:var(--gold2)}
+.ft-sub{font-size:13px;color:var(--tx2);margin-bottom:28px;font-weight:300}
+.ft-links{display:flex;justify-content:center;gap:24px;margin-bottom:28px}
+.ft-link{font-size:12px;color:var(--tx2);text-decoration:none;letter-spacing:.5px;transition:color .2s}
+.ft-link:hover{color:var(--gold)}
+.ft-copy{font-size:12px;color:var(--tx3)}
+
+/* ===== MODAL BASE ===== */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:600;
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .28s}
+.ov.open{opacity:1;pointer-events:all}
+.modal{background:var(--sf);border:1px solid var(--br);border-radius:var(--r2);
+  width:100%;max-width:700px;max-height:90vh;overflow-y:auto;position:relative;
+  transform:translateY(18px);transition:transform .28s}
+.ov.open .modal{transform:translateY(0)}
+.modal-x{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;
+  background:var(--sf2);border:1px solid var(--br);color:var(--tx2);font-size:16px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .2s}
+.modal-x:hover{background:var(--br);color:var(--tx)}
+
+/* DETAIL MODAL */
+.det-img{height:250px;position:relative;border-radius:var(--r2) var(--r2) 0 0;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;font-size:90px}
+.det-img .overlay-info{position:absolute;bottom:14px;left:14px;display:flex;gap:8px;align-items:center}
+.det-body{padding:28px}
+.det-name{font-family:'Libre Baskerville',serif;font-size:30px;font-weight:700;color:var(--tx);margin-bottom:6px}
+.det-tag{font-size:14px;color:var(--tx2);margin-bottom:22px;font-weight:300;font-style:italic}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:26px}
+.info-item{background:var(--sf2);border-radius:var(--r);padding:14px;border:1px solid var(--br)}
+.info-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:4px}
+.info-val{font-size:13px;color:var(--tx);font-weight:300;line-height:1.5}
+.svc-h{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;
+  letter-spacing:2px;color:var(--tx);margin-bottom:14px}
+.svc-row{display:flex;justify-content:space-between;align-items:center;
+  padding:12px 0;border-bottom:1px solid var(--br)}
+.svc-row:last-child{border:none}
+.svc-nm{font-size:14px;color:var(--tx)}
+.svc-dur{font-size:11px;color:var(--tx2);margin-top:2px}
+.svc-pr{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:600;color:var(--gold2)}
+.btn-big{width:100%;padding:16px;background:var(--gold);color:var(--bg);border:none;
+  border-radius:var(--r);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
+  font-size:15px;cursor:pointer;letter-spacing:.3px;transition:background .2s;margin-top:8px}
+.btn-big:hover{background:var(--gold2)}
+
+/* BOOKING MODAL */
+.bk-hdr{padding:22px 28px 18px;border-bottom:1px solid var(--br)}
+.bk-step-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:4px}
+.bk-shop{font-family:'Libre Baskerville',serif;font-size:20px;color:var(--tx);margin-bottom:12px}
+.steps-bar{display:flex;gap:5px}
+.sdot{height:3px;flex:1;background:var(--br);border-radius:2px;transition:background .3s}
+.sdot.act{background:var(--gold)}
+.sdot.done{background:var(--teal)}
+.bk-body{padding:28px}
+.bk-title{font-family:'Libre Baskerville',serif;font-size:20px;color:var(--tx);margin-bottom:18px}
+
+/* STEP 1 service select */
+.svc-sel{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;
+  border:1px solid var(--br);border-radius:var(--r);margin-bottom:10px;cursor:pointer;transition:all .2s}
+.svc-sel:hover{border-color:var(--gold);background:rgba(191,137,32,.06)}
+.svc-sel.on{border-color:var(--gold);background:rgba(191,137,32,.09)}
+.radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--br2);flex-shrink:0;transition:all .2s}
+.svc-sel.on .radio{border-color:var(--gold);background:var(--gold);box-shadow:0 0 0 3px rgba(191,137,32,.15)}
+
+/* STEP 2 date */
+.date-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
+.di{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border:1px solid var(--br);border-radius:var(--r);cursor:pointer;transition:all .2s;font-size:11px}
+.di:hover{border-color:var(--gold);background:rgba(191,137,32,.06)}
+.di.on{border-color:var(--gold);background:rgba(191,137,32,.1);color:var(--gold)}
+.di.past{opacity:.28;cursor:not-allowed}
+.di-day{font-size:9px;color:var(--tx2);margin-bottom:2px;text-transform:uppercase;letter-spacing:.5px}
+.di-num{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:600;line-height:1}
+
+/* STEP 3 time */
+.time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ti{padding:11px 6px;text-align:center;border:1px solid var(--br);border-radius:var(--r);
+  cursor:pointer;font-size:13px;font-family:'Barlow Condensed',sans-serif;font-weight:600;
+  letter-spacing:.5px;transition:all .2s;color:var(--tx2)}
+.ti:hover{border-color:var(--gold);color:var(--tx)}
+.ti.on{border-color:var(--gold);background:rgba(191,137,32,.1);color:var(--gold)}
+.ti.bkd{background:rgba(139,34,34,.12);border-color:var(--red);color:var(--tx3);cursor:not-allowed;text-decoration:line-through}
+.time-legend{display:flex;gap:16px;margin-top:12px;font-size:11px;color:var(--tx2)}
+.leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;margin-top:1px}
+
+/* STEP 4 form */
+.fgrp{margin-bottom:16px}
+.flbl{display:block;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--tx2);margin-bottom:6px}
+.finp{width:100%;padding:12px 16px;background:var(--sf2);border:1px solid var(--br);
+  border-radius:var(--r);color:var(--tx);font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:14px;outline:none;transition:border .2s}
+.finp:focus{border-color:var(--gold)}
+.bk-summary{background:var(--sf2);border-radius:var(--r);padding:16px;
+  margin:16px 0;border:1px solid var(--br)}
+.bk-sum-h{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.bk-sum-row{display:flex;justify-content:space-between;font-size:13px;
+  margin-bottom:6px;color:var(--tx2)}
+.bk-sum-row span:last-child{color:var(--tx)}
+
+/* STEP 5 payment */
+.pay-sum{background:var(--sf2);border-radius:var(--r);padding:16px;margin-bottom:20px;border:1px solid var(--br)}
+.pay-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:var(--tx2)}
+.pay-row.tot{font-size:15px;font-weight:600;color:var(--tx);padding-top:10px;
+  border-top:1px solid var(--br);margin-top:6px}
+.pay-row .amt{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;color:var(--gold2)}
+.pay-row.tot .amt{font-size:17px;color:var(--gold3)}
+.pay-section-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;
+  color:var(--tx2);text-transform:uppercase;margin-bottom:10px}
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.pay-m{padding:13px 10px;border:1px solid var(--br);border-radius:var(--r);cursor:pointer;
+  text-align:center;transition:all .2s}
+.pay-m:hover{border-color:var(--tx2)}
+.pay-m.on{border-color:var(--gold);background:rgba(191,137,32,.09)}
+.pay-m-name{font-size:14px;font-weight:600;color:var(--tx)}
+.pay-m-type{font-size:11px;color:var(--tx2);margin-top:2px}
+
+/* STEP 6 confirmation */
+.conf-box{text-align:center;margin-bottom:24px}
+.conf-ico{width:80px;height:80px;border-radius:50%;background:rgba(30,107,66,.15);
+  border:2px solid var(--green);margin:0 auto 18px;display:flex;align-items:center;
+  justify-content:center;font-size:36px}
+.conf-title{font-family:'Libre Baskerville',serif;font-size:28px;color:var(--tx);
+  margin-bottom:8px}
+.conf-desc{font-size:14px;color:var(--tx2);font-weight:300;line-height:1.7}
+.pay-instr{background:var(--sf2);border:1px solid var(--br);border-radius:var(--r);
+  padding:20px;margin-bottom:16px}
+.pay-instr-h{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;
+  letter-spacing:2px;color:var(--gold);margin-bottom:14px}
+.pay-instr-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px}
+.pay-instr-row span:first-child{color:var(--tx2)}
+.pay-instr-row span:last-child{color:var(--tx)}
+.pay-acct{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;
+  letter-spacing:3px;color:var(--tx);text-align:center;padding:12px;
+  border:1px dashed var(--gold);border-radius:var(--r);margin:12px 0}
+.pay-total{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;
+  color:var(--gold3);text-align:center;margin-bottom:6px}
+.pay-note{font-size:12px;color:var(--tx2);text-align:center;line-height:1.6;font-weight:300}
+.code-box{background:var(--sf2);border-radius:var(--r);padding:16px;margin-bottom:16px;border:1px solid var(--br)}
+.code-box-h{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.booking-code{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700;
+  letter-spacing:6px;color:var(--tx);text-align:center;
+  border:1px dashed var(--br2);border-radius:var(--r);padding:14px;margin-bottom:10px}
+.code-rows{font-size:13px}
+.code-rows .cr{display:flex;justify-content:space-between;margin-bottom:6px}
+.code-rows .cr span:first-child{color:var(--tx2)}
+.code-rows .cr span:last-child{color:var(--tx)}
+
+/* NAV BUTTONS */
+.bk-nav{display:flex;gap:10px;margin-top:22px}
+.btn-back{padding:12px 22px;background:transparent;border:1px solid var(--br);
+  border-radius:var(--r);color:var(--tx2);font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:13px;cursor:pointer;transition:all .2s}
+.btn-back:hover{border-color:var(--tx2);color:var(--tx)}
+.btn-next{flex:1;padding:12px 22px;background:var(--gold);border:none;
+  border-radius:var(--r);color:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:700;font-size:13px;cursor:pointer;transition:background .2s;letter-spacing:.3px}
+.btn-next:hover{background:var(--gold2)}
+.btn-next:disabled{opacity:.35;cursor:not-allowed}
+.btn-full{width:100%;padding:14px;background:var(--gold);border:none;border-radius:var(--r);
+  color:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;
+  cursor:pointer;transition:background .2s}
+.btn-full:hover{background:var(--gold2)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav{padding:12px 20px}
+  .nav-links{display:none}
+  .hero{padding:90px 20px 60px}
+  .hero-bigpole,.hero-bigpole-left{display:none}
+  .hero-stats{gap:20px}
+  .hero-stats .stat-div{display:none}
+  .sec{padding:60px 20px}
+  .how-sec{padding:60px 20px}
+  footer{padding:40px 20px}
+  .info-grid{grid-template-columns:1fr}
+  .time-grid{grid-template-columns:repeat(3,1fr)}
+  .pay-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="pole-wrap"><div class="pole-inner"></div></div>
+    <span class="brand-text">SLEMAN <em>BARBERSHOP</em> HUB</span>
+  </div>
+  <div class="nav-links">
+    <a href="#direktori" class="nav-link">Direktori</a>
+    <a href="#cara-booking" class="nav-link">Cara Booking</a>
+  </div>
+  <button class="nav-btn" onclick="document.getElementById('direktori').scrollIntoView({behavior:'smooth'})">Cari Barbershop</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-bigpole"><div class="hero-bigpole-inner"></div></div>
+  <div class="hero-bigpole-left" style="width:40px;height:200px"><div class="hero-bigpole-inner"></div></div>
+  <div class="hero-c">
+    <p class="hero-eyebrow">Direktori Resmi Barbershop</p>
+    <h1 class="hero-h">Sleman<br><em>Barbershop</em><br>Hub</h1>
+    <p class="hero-sub">Satu tempat, semua pilihan</p>
+    <p class="hero-desc">Temukan barbershop terbaik di Sleman, cek jadwal kosong, dan pesan tempat dengan pembayaran di muka — aman, mudah, dan tanpa antre.</p>
+    <div class="hero-search">
+      <input type="text" id="searchInput" placeholder="Cari nama barbershop atau lokasi...">
+      <button onclick="doSearch()">Cari</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-n">5</div><div class="stat-l">Barbershop</div></div>
+      <div class="stat-div"></div>
+      <div><div class="stat-n">26</div><div class="stat-l">Layanan</div></div>
+      <div class="stat-div"></div>
+      <div><div class="stat-n">4.8★</div><div class="stat-l">Rating</div></div>
+      <div class="stat-div"></div>
+      <div><div class="stat-n">500+</div><div class="stat-l">Booking/Bln</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIREKTORI -->
+<section class="sec" id="direktori">
+  <p class="sec-ey">Terdaftar & Terverifikasi</p>
+  <h2 class="sec-h">Pilih <em>Barbershop</em> Anda</h2>
+  <div class="filters">
+    <button class="fb on" onclick="setFilter(this,'all')">Semua</button>
+    <button class="fb" onclick="setFilter(this,'open')">Buka Sekarang</button>
+    <button class="fb" onclick="setFilter(this,'premium')">Premium</button>
+    <button class="fb" onclick="setFilter(this,'affordable')">Terjangkau</button>
+    <button class="fb" onclick="setFilter(this,'classic')">Klasik</button>
+    <button class="fb" onclick="setFilter(this,'modern')">Modern</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-sec" id="cara-booking">
+  <div class="how-in">
+    <p class="sec-ey">Cara Booking</p>
+    <h2 class="sec-h">Mudah dalam <em>4 Langkah</em></h2>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-ico">✂️</div>
+        <div class="how-n">Langkah 01</div>
+        <div class="how-t">Pilih Barbershop</div>
+        <div class="how-d">Jelajahi direktori, lihat profil lengkap, foto, dan ulasan dari pelanggan nyata.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-ico">📅</div>
+        <div class="how-n">Langkah 02</div>
+        <div class="how-t">Pilih Waktu</div>
+        <div class="how-d">Cek slot tersedia secara real-time. Setiap sesi berdurasi 45 menit.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-ico">💳</div>
+        <div class="how-n">Langkah 03</div>
+        <div class="how-t">Bayar di Muka</div>
+        <div class="how-d">Konfirmasi booking dengan transfer bank atau e-wallet. Slot Anda terjamin.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-ico">💈</div>
+        <div class="how-n">Langkah 04</div>
+        <div class="how-t">Datang & Cukur</div>
+        <div class="how-d">Tunjukkan kode booking, duduk santai, dan nikmati tanpa antre panjang.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo">SLEMAN <em>BARBERSHOP</em> HUB</div>
+  <div class="ft-sub">Platform booking barbershop terpercaya di Kabupaten Sleman, DIY</div>
+  <div class="ft-links">
+    <a href="#" class="ft-link">Tentang Kami</a>
+    <a href="#" class="ft-link">Daftarkan Barbershop</a>
+    <a href="#" class="ft-link">Syarat & Ketentuan</a>
+    <a href="#" class="ft-link">Kontak</a>
+  </div>
+  <div class="ft-copy">© 2025 Sleman Barbershop Hub. Melayani dengan bangga.</div>
+</footer>
+
+<!-- DETAIL OVERLAY -->
+<div class="ov" id="detOv" onclick="closeOv('detOv')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-x" onclick="closeOv('detOv')">✕</button>
+    <div class="det-img" id="detImg">
+      <div class="overlay-info" id="detBadges"></div>
+    </div>
+    <div class="det-body">
+      <div class="det-name" id="detName"></div>
+      <div class="det-tag" id="detTagline"></div>
+      <div class="info-grid" id="detInfo"></div>
+      <div class="svc-h">Layanan & Harga</div>
+      <div id="detSvcs"></div>
+      <button class="btn-big" id="detBkBtn">BOOKING SEKARANG</button>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING OVERLAY -->
+<div class="ov" id="bkOv" onclick="closeOv('bkOv')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-x" onclick="closeOv('bkOv')">✕</button>
+    <div class="bk-hdr">
+      <div class="bk-step-lbl" id="bkStepLbl"></div>
+      <div class="bk-shop" id="bkShopName"></div>
+      <div class="steps-bar" id="stepsBar"></div>
+    </div>
+    <div class="bk-body" id="bkBody"></div>
+  </div>
+</div>
+
+<script>
+// ===== DATA =====
+const shops = [
+  {
+    id:1, name:"Maestro Barbershop",
+    tagline:"Pengalaman klasik sejak 2015 — tempat cukur paling ikonik di Sleman.",
+    addr:"Jl. Kaliurang km.9, Ngaglik, Sleman",
+    openH:"09:00",closeH:"21:00",open:true,
+    rating:4.9,reviews:214,
+    price:"Rp 45.000 – 120.000",
+    tags:["classic","premium"],
+    bg:"linear-gradient(140deg,#1a0808 0%,#3a1010 60%,#1a0808 100%)",emoji:"💈",
+    svcs:[
+      {n:"Potong Rambut Klasik",dur:"45 mnt",p:"Rp 65.000"},
+      {n:"Cukur + Potong",dur:"45 mnt",p:"Rp 85.000"},
+      {n:"Grooming Lengkap",dur:"45 mnt",p:"Rp 120.000"},
+      {n:"Trim Kumis & Jenggot",dur:"45 mnt",p:"Rp 35.000"},
+      {n:"Keramas + Blow Dry",dur:"45 mnt",p:"Rp 45.000"},
+    ],
+    booked:{}
+  },
+  {
+    id:2, name:"The Kingdom",
+    tagline:"Modern cuts, premium grooming — barbershop urban terbaik di ring road.",
+    addr:"Jl. Magelang No.42, Mlati, Sleman",
+    openH:"10:00",closeH:"22:00",open:true,
+    rating:4.8,reviews:187,
+    price:"Rp 60.000 – 150.000",
+    tags:["modern","premium"],
+    bg:"linear-gradient(140deg,#06060f 0%,#10102e 60%,#06060f 100%)",emoji:"👑",
+    svcs:[
+      {n:"Fade & Taper",dur:"45 mnt",p:"Rp 75.000"},
+      {n:"High Skin Fade",dur:"45 mnt",p:"Rp 90.000"},
+      {n:"Textured Crop",dur:"45 mnt",p:"Rp 85.000"},
+      {n:"Beard Shaping",dur:"45 mnt",p:"Rp 60.000"},
+      {n:"Premium Package",dur:"45 mnt",p:"Rp 150.000"},
+    ],
+    booked:{}
+  },
+  {
+    id:3, name:"Sultan's Cut",
+    tagline:"Potongan rapi, harga merakyat — favorit warga Godean sejak 2018.",
+    addr:"Jl. Godean km.5, Seyegan, Sleman",
+    openH:"08:00",closeH:"20:00",open:true,
+    rating:4.7,reviews:301,
+    price:"Rp 25.000 – 75.000",
+    tags:["affordable","classic"],
+    bg:"linear-gradient(140deg,#051505 0%,#0d280d 60%,#051505 100%)",emoji:"⚡",
+    svcs:[
+      {n:"Potong Biasa",dur:"45 mnt",p:"Rp 25.000"},
+      {n:"Potong + Cukur",dur:"45 mnt",p:"Rp 45.000"},
+      {n:"Potong + Keramas",dur:"45 mnt",p:"Rp 40.000"},
+      {n:"Anak (< 10 tahun)",dur:"45 mnt",p:"Rp 20.000"},
+      {n:"Paket Ayah & Anak",dur:"45 mnt",p:"Rp 60.000"},
+    ],
+    booked:{}
+  },
+  {
+    id:4, name:"Pedjaten Grooming",
+    tagline:"Seni cukur tradisional Jawa dipadukan gaya kontemporer.",
+    addr:"Jl. Monjali No.15, Mlati, Sleman",
+    openH:"09:00",closeH:"21:00",open:false,
+    rating:4.6,reviews:98,
+    price:"Rp 40.000 – 100.000",
+    tags:["classic","affordable"],
+    bg:"linear-gradient(140deg,#120e00 0%,#2a2200 60%,#120e00 100%)",emoji:"🏛️",
+    svcs:[
+      {n:"Potong Tradisional",dur:"45 mnt",p:"Rp 40.000"},
+      {n:"Cukur Wajah Lengkap",dur:"45 mnt",p:"Rp 50.000"},
+      {n:"Creambath Rambut",dur:"45 mnt",p:"Rp 55.000"},
+      {n:"Totok Wajah",dur:"45 mnt",p:"Rp 65.000"},
+      {n:"Paket Sultan Jawa",dur:"45 mnt",p:"Rp 100.000"},
+    ],
+    booked:{}
+  },
+  {
+    id:5, name:"Urban Fade Studio",
+    tagline:"Hip-hop vibes, street culture — nongkrong sekaligus cukur.",
+    addr:"Jl. Ring Road Utara No.88, Depok, Sleman",
+    openH:"11:00",closeH:"22:00",open:true,
+    rating:4.9,reviews:156,
+    price:"Rp 70.000 – 160.000",
+    tags:["modern","premium"],
+    bg:"linear-gradient(140deg,#080012 0%,#180828 60%,#080012 100%)",emoji:"🎯",
+    svcs:[
+      {n:"Drop Fade",dur:"45 mnt",p:"Rp 85.000"},
+      {n:"High Fade + Lineup",dur:"45 mnt",p:"Rp 95.000"},
+      {n:"Dreadlock Shaping",dur:"45 mnt",p:"Rp 120.000"},
+      {n:"Color + Cut",dur:"45 mnt",p:"Rp 160.000"},
+      {n:"Buzz Cut",dur:"45 mnt",p:"Rp 70.000"},
+    ],
+    booked:{}
+  }
+];
+
+// Pre-fill some slots as booked
+const td = new Date().toDateString();
+shops[0].booked[td] = ['09:00','10:30','13:30','15:00','18:45'];
+shops[1].booked[td] = ['10:00','11:45','14:15','17:15'];
+shops[4].booked[td] = ['11:00','12:45','16:30','19:30','20:15'];
+
+// ===== STATE =====
+let filter='all', search='', bk={shop:null,svc:null,date:null,time:null,name:'',phone:'',pay:null,step:1};
+
+// ===== SLOTS =====
+function genSlots(oh,oc){
+  const [hh,hm]=oh.split(':').map(Number);
+  const [ch,cm]=oc.split(':').map(Number);
+  const slots=[]; let cur=hh*60+hm, end=ch*60+cm-45;
+  while(cur<=end){
+    const h=String(Math.floor(cur/60)).padStart(2,'0'), m=String(cur%60).padStart(2,'0');
+    slots.push(`${h}:${m}`); cur+=45;
+  }
+  return slots;
+}
+
+// ===== RENDER CARDS =====
+function renderGrid(){
+  const kw=search.toLowerCase();
+  const list=shops.filter(s=>{
+    const mf=filter==='all'||(filter==='open'&&s.open)||s.tags.includes(filter);
+    const ms=!kw||s.name.toLowerCase().includes(kw)||s.addr.toLowerCase().includes(kw)||s.tags.some(t=>t.includes(kw));
+    return mf&&ms;
+  });
+  const grid=document.getElementById('grid');
+  if(!list.length){
+    grid.innerHTML='<div class="no-results">Tidak ada barbershop yang ditemukan. Coba kata kunci lain.</div>';
+    return;
+  }
+  grid.innerHTML=list.map(s=>`
+    <div class="card" onclick="openDet(${s.id})">
+      <div class="card-img" style="background:${s.bg}">
+        <span>${s.emoji}</span>
+        <span class="card-badge ${s.open?'b-open':'b-closed'}">${s.open?'● BUKA':'● TUTUP'}</span>
+        <div class="card-stars">★ ${s.rating} <span style="color:var(--tx3);font-size:10px">(${s.reviews})</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">${s.name}</div>
+        <div class="card-addr">
+          <svg width="12" height="12" fill="var(--tx2)" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          ${s.addr}
+        </div>
+        <div class="card-tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        <div class="card-foot">
+          <div class="card-hrs">🕐 ${s.openH} – ${s.closeH}</div>
+          <div class="card-price">${s.price}</div>
+        </div>
+        <button class="card-cta" onclick="event.stopPropagation();startBk(${s.id})">BOOKING SLOT</button>
+      </div>
+    </div>`).join('');
+}
+
+function setFilter(btn,f){
+  filter=f;
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderGrid();
+}
+function doSearch(){search=document.getElementById('searchInput').value;renderGrid();}
+document.getElementById('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
+
+// ===== DETAIL MODAL =====
+function openDet(id){
+  const s=shops.find(x=>x.id===id);
+  const di=document.getElementById('detImg');
+  di.style.background=s.bg;
+  di.querySelector('span:not(.overlay-info)') && (di.innerHTML='');
+  di.innerHTML=`<span style="font-size:90px">${s.emoji}</span>
+    <div class="overlay-info">
+      <span class="card-badge ${s.open?'b-open':'b-closed'}" style="position:relative;top:auto;left:auto">${s.open?'● BUKA':'● TUTUP'}</span>
+      <span style="background:rgba(13,10,6,.82);padding:4px 12px;border-radius:20px;font-size:12px;color:var(--gold2)">★ ${s.rating} (${s.reviews} ulasan)</span>
+    </div>`;
+  document.getElementById('detName').textContent=s.name;
+  document.getElementById('detTagline').textContent=s.tagline;
+  document.getElementById('detInfo').innerHTML=`
+    <div class="info-item"><div class="info-lbl">📍 Alamat</div><div class="info-val">${s.addr}</div></div>
+    <div class="info-item"><div class="info-lbl">🕐 Jam Buka</div><div class="info-val">${s.openH} – ${s.closeH}</div></div>
+    <div class="info-item"><div class="info-lbl">💰 Range Harga</div><div class="info-val">${s.price}</div></div>
+    <div class="info-item"><div class="info-lbl">⏱ Durasi Sesi</div><div class="info-val">45 menit per slot</div></div>`;
+  document.getElementById('detSvcs').innerHTML=s.svcs.map(sv=>`
+    <div class="svc-row">
+      <div><div class="svc-nm">${sv.n}</div><div class="svc-dur">⏱ ${sv.dur}</div></div>
+      <div class="svc-pr">${sv.p}</div>
+    </div>`).join('');
+  document.getElementById('detBkBtn').onclick=()=>{closeOv('detOv');startBk(id);};
+  openOv('detOv');
+}
+
+// ===== BOOKING =====
+function startBk(id){
+  bk={shop:shops.find(x=>x.id===id),svc:null,date:null,time:null,name:'',phone:'',pay:null,step:1};
+  document.getElementById('bkShopName').textContent=bk.shop.name;
+  renderStep();
+  openOv('bkOv');
+}
+
+function renderStep(){
+  const S=bk.step, TOTAL=5;
+  document.getElementById('bkStepLbl').textContent=S<=TOTAL?`LANGKAH ${S} DARI ${TOTAL} — ${['PILIH LAYANAN','PILIH TANGGAL','PILIH WAKTU','DATA DIRI','PEMBAYARAN'][S-1]}`:'BOOKING DIKONFIRMASI';
+  const bar=document.getElementById('stepsBar');
+  bar.innerHTML=Array.from({length:TOTAL},(_,i)=>`<div class="sdot ${i+1<S?'done':i+1===S?'act':''}"></div>`).join('');
+  const body=document.getElementById('bkBody');
+
+  if(S===1){
+    body.innerHTML=`<div class="bk-title">Pilih Layanan</div>
+      ${bk.shop.svcs.map((sv,i)=>`
+        <div class="svc-sel ${bk.svc===i?'on':''}" onclick="bk.svc=${i};renderStep()">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="radio"></div>
+            <div><div style="font-size:14px;font-weight:500">${sv.n}</div>
+              <div style="font-size:11px;color:var(--tx2)">⏱ ${sv.dur}</div></div>
+          </div>
+          <div class="svc-pr">${sv.p}</div>
+        </div>`).join('')}
+      <div class="bk-nav"><button class="btn-next" onclick="nextStep()" ${bk.svc===null?'disabled':''}>Lanjut →</button></div>`;
+  }
+
+  else if(S===2){
+    const dates=[]; const now=new Date();
+    for(let i=0;i<14;i++){const d=new Date(now);d.setDate(now.getDate()+i);dates.push(d);}
+    const days=['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+    body.innerHTML=`<div class="bk-title">Pilih Tanggal</div>
+      <div class="date-grid">
+        ${dates.map(d=>`
+          <div class="di ${bk.date===d.toDateString()?'on':''}" onclick="bk.date='${d.toDateString()}';bk.time=null;renderStep()">
+            <div class="di-day">${days[d.getDay()]}</div>
+            <div class="di-num">${d.getDate()}</div>
+          </div>`).join('')}
+      </div>
+      <div class="bk-nav">
+        <button class="btn-back" onclick="prevStep()">← Kembali</button>
+        <button class="btn-next" onclick="nextStep()" ${!bk.date?'disabled':''}>Lanjut →</button>
+      </div>`;
+  }
+
+  else if(S===3){
+    const slots=genSlots(bk.shop.openH,bk.shop.closeH);
+    const bookedList=(bk.shop.booked[bk.date]||[]);
+    body.innerHTML=`<div class="bk-title">Pilih Waktu</div>
+      <p style="font-size:12px;color:var(--tx2);margin-bottom:16px;line-height:1.6">Setiap sesi berdurasi 45 menit. Pilih slot kosong di bawah.</p>
+      <div class="time-grid">
+        ${slots.map(sl=>`
+          <div class="ti ${bookedList.includes(sl)?'bkd':bk.time===sl?'on':''}"
+            onclick="${bookedList.includes(sl)?'':` bk.time='${sl}';renderStep()`}">
+            ${sl}${bookedList.includes(sl)?'<div style="font-size:9px;margin-top:2px;letter-spacing:.5px">PENUH</div>':''}
+          </div>`).join('')}
+      </div>
+      <div class="time-legend">
+        <div style="display:flex;gap:5px;align-items:center"><div class="leg-dot" style="background:rgba(139,34,34,.25);border:1px solid var(--red)"></div>Penuh</div>
+        <div style="display:flex;gap:5px;align-items:center"><div class="leg-dot" style="background:rgba(191,137,32,.15);border:1px solid var(--gold)"></div>Dipilih</div>
+        <div style="display:flex;gap:5px;align-items:center"><div class="leg-dot" style="border:1px solid var(--br)"></div>Tersedia</div>
+      </div>
+      <div class="bk-nav">
+        <button class="btn-back" onclick="prevStep()">← Kembali</button>
+        <button class="btn-next" onclick="nextStep()" ${!bk.time?'disabled':''}>Lanjut →</button>
+      </div>`;
+  }
+
+  else if(S===4){
+    body.innerHTML=`<div class="bk-title">Data Pemesan</div>
+      <div class="fgrp"><label class="flbl">Nama Lengkap</label>
+        <input class="finp" id="iName" type="text" placeholder="Masukkan nama Anda" value="${bk.name}"></div>
+      <div class="fgrp"><label class="flbl">Nomor HP / WhatsApp</label>
+        <input class="finp" id="iPhone" type="tel" placeholder="08xx-xxxx-xxxx" value="${bk.phone}"></div>
+      <div class="bk-summary">
+        <div class="bk-sum-h">Ringkasan Booking</div>
+        <div class="bk-sum-row"><span>Layanan</span><span>${bk.shop.svcs[bk.svc].n}</span></div>
+        <div class="bk-sum-row"><span>Tanggal</span><span>${fmtDate(bk.date)}</span></div>
+        <div class="bk-sum-row"><span>Waktu</span><span>${bk.time} – ${addMin(bk.time,45)}</span></div>
+      </div>
+      <div class="bk-nav">
+        <button class="btn-back" onclick="prevStep()">← Kembali</button>
+        <button class="btn-next" onclick="valAndNext()">Lanjut →</button>
+      </div>`;
+  }
+
+  else if(S===5){
+    const priceNum=parseInt(bk.shop.svcs[bk.svc].p.replace(/[^0-9]/g,''));
+    const fee=2000, total=priceNum+fee;
+    const banks=[{id:'bca',n:'BCA'},{id:'bri',n:'BRI'},{id:'mandiri',n:'Mandiri'},{id:'bni',n:'BNI'}];
+    const ewls=[{id:'gopay',n:'GoPay'},{id:'ovo',n:'OVO'},{id:'dana',n:'DANA'},{id:'spay',n:'ShopeePay'}];
+    body.innerHTML=`<div class="bk-title">Metode Pembayaran</div>
+      <div class="pay-sum">
+        <div class="pay-row"><span>Layanan</span><span class="amt">${bk.shop.svcs[bk.svc].p}</span></div>
+        <div class="pay-row"><span>Biaya platform</span><span class="amt">Rp 2.000</span></div>
+        <div class="pay-row tot"><span>Total Pembayaran</span><span class="amt">${fmtRp(total)}</span></div>
+      </div>
+      <div class="pay-section-lbl">Transfer Bank</div>
+      <div class="pay-grid">${banks.map(b=>`
+        <div class="pay-m ${bk.pay===b.id?'on':''}" onclick="bk.pay='${b.id}';renderStep()">
+          <div class="pay-m-name">${b.n}</div><div class="pay-m-type">Transfer Bank</div>
+        </div>`).join('')}</div>
+      <div class="pay-section-lbl">E-Wallet</div>
+      <div class="pay-grid">${ewls.map(b=>`
+        <div class="pay-m ${bk.pay===b.id?'on':''}" onclick="bk.pay='${b.id}';renderStep()">
+          <div class="pay-m-name">${b.n}</div><div class="pay-m-type">E-Wallet</div>
+        </div>`).join('')}</div>
+      <div class="bk-nav">
+        <button class="btn-back" onclick="prevStep()">← Kembali</button>
+        <button class="btn-next" onclick="doConfirm()" ${!bk.pay?'disabled':''}>Konfirmasi & Bayar</button>
+      </div>`;
+  }
+
+  else if(S===6){
+    const code='SBH-'+Math.random().toString(36).substr(2,6).toUpperCase();
+    const priceNum=parseInt(bk.shop.svcs[bk.svc].p.replace(/[^0-9]/g,''));
+    const total=priceNum+2000;
+    const pi=payInfo(bk.pay);
+    body.innerHTML=`
+      <div class="conf-box">
+        <div class="conf-ico">✅</div>
+        <div class="conf-title">Booking Berhasil!</div>
+        <p class="conf-desc">Selesaikan pembayaran dalam <strong style="color:var(--gold2)">1 × 24 jam</strong> untuk mengamankan slot Anda. Kirim bukti transfer ke WhatsApp barbershop.</p>
+      </div>
+      <div class="code-box">
+        <div class="code-box-h">Kode Booking</div>
+        <div class="booking-code">${code}</div>
+        <div class="code-rows">
+          <div class="cr"><span>Barbershop</span><span>${bk.shop.name}</span></div>
+          <div class="cr"><span>Layanan</span><span>${bk.shop.svcs[bk.svc].n}</span></div>
+          <div class="cr"><span>Tanggal</span><span>${fmtDate(bk.date)}</span></div>
+          <div class="cr"><span>Waktu</span><span>${bk.time} – ${addMin(bk.time,45)}</span></div>
+          <div class="cr"><span>Atas nama</span><span>${bk.name}</span></div>
+        </div>
+      </div>
+      <div class="pay-instr">
+        <div class="pay-instr-h">Instruksi Pembayaran</div>
+        <div class="pay-instr-row"><span>Metode</span><span>${pi.name}</span></div>
+        <div class="pay-instr-row"><span>${pi.label}</span><span>${pi.holder}</span></div>
+        <div class="pay-acct">${pi.number}</div>
+        <div class="pay-total">${fmtRp(total)}</div>
+        <div class="pay-note">Transfer tepat sesuai nominal di atas termasuk angka unik.<br>Kirim bukti transfer ke WhatsApp barbershop setelah pembayaran.</div>
+      </div>
+      <button class="btn-full" onclick="closeOv('bkOv')">Selesai</button>`;
+  }
+}
+
+function nextStep(){bk.step++;renderStep();}
+function prevStep(){bk.step--;renderStep();}
+function valAndNext(){
+  const n=document.getElementById('iName')?.value.trim();
+  const p=document.getElementById('iPhone')?.value.trim();
+  if(!n||!p){alert('Mohon isi nama dan nomor HP terlebih dahulu.');return;}
+  bk.name=n;bk.phone=p;nextStep();
+}
+function doConfirm(){
+  if(!bk.shop.booked[bk.date])bk.shop.booked[bk.date]=[];
+  bk.shop.booked[bk.date].push(bk.time);
+  bk.step=6;renderStep();
+}
+
+// ===== PAYMENT INFO =====
+function payInfo(m){
+  return {
+    bca:{name:'BCA',label:'Atas Nama',holder:'Sleman Barbershop Hub',number:'1234-5678-90'},
+    bri:{name:'BRI',label:'Atas Nama',holder:'Sleman Barbershop Hub',number:'0987-6543-2101'},
+    mandiri:{name:'Mandiri',label:'Atas Nama',holder:'Sleman Barbershop Hub',number:'142-0098-765432'},
+    bni:{name:'BNI',label:'Atas Nama',holder:'Sleman Barbershop Hub',number:'0987-6543-21'},
+    gopay:{name:'GoPay',label:'Dikirim ke',holder:'SB Hub',number:'0812-3456-7890'},
+    ovo:{name:'OVO',label:'Dikirim ke',holder:'SB Hub',number:'0812-3456-7890'},
+    dana:{name:'DANA',label:'Dikirim ke',holder:'SB Hub',number:'0812-3456-7890'},
+    spay:{name:'ShopeePay',label:'Dikirim ke',holder:'SB Hub',number:'0812-3456-7890'},
+  }[m]||{name:'BCA',label:'Atas Nama',holder:'Sleman Barbershop Hub',number:'1234-5678-90'};
+}
+
+// ===== HELPERS =====
+function fmtDate(ds){
+  const d=new Date(ds);
+  const days=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const months=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  return `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+function addMin(t,m){
+  const [h,mi]=t.split(':').map(Number), tot=h*60+mi+m;
+  return `${String(Math.floor(tot/60)).padStart(2,'0')}:${String(tot%60).padStart(2,'0')}`;
+}
+function fmtRp(n){return 'Rp '+n.toLocaleString('id-ID');}
+
+// ===== MODAL OPS =====
+function openOv(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+function closeOv(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
+
+// ===== INIT =====
+renderGrid();
+</script>
+</body>
+</html>
